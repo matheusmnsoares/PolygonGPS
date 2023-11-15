@@ -2,18 +2,94 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:transitionName="info_transition"
     tools:context=".MainActivity">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Show Map"
-        android:id="@+id/showMap"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+  <ImageView
+      android:id="@+id/mainBackground"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:scaleType="fitCenter"
+      android:src="@drawable/main_background"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent" />
+
+  <ImageView
+      android:id="@+id/mainPicture"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp"
+      android:src="@drawable/main_picture"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+  <ImageView
+      android:id="@+id/mainLogo"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:src="@drawable/main_logo"
+      app:layout_constraintEnd_toEndOf="@+id/mainPicture"
+      app:layout_constraintStart_toStartOf="@+id/mainPicture"
+      app:layout_constraintTop_toBottomOf="@+id/mainPicture" />
+
+  <ImageView
+      android:id="@+id/mainSlogan"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="24dp"
+      android:src="@drawable/main_slogan"
+      app:layout_constraintBottom_toTopOf="@+id/mainStart"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent" />
+
+  <ImageView
+      android:id="@+id/mainInfo"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="40dp"
+      android:src="@drawable/main_info"
+      android:transitionName="info_transition"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent" />
+
+  <Button
+      android:id="@+id/buttonInfo"
+      android:layout_width="260dp"
+      android:layout_height="68dp"
+      android:background="#00FFFFFF"
+      android:visibility="visible"
+      app:layout_constraintBottom_toBottomOf="@+id/mainInfo"
+      app:layout_constraintEnd_toEndOf="@+id/mainInfo"
+      app:layout_constraintStart_toStartOf="@+id/mainInfo"
+      app:layout_constraintTop_toTopOf="@+id/mainInfo" />
+
+  <ImageView
+      android:id="@+id/mainStart"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="24dp"
+      android:src="@drawable/main_start"
+      app:layout_constraintBottom_toTopOf="@+id/mainInfo"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent" />
+
+  <Button
+      android:id="@+id/buttonStart"
+      android:layout_width="260dp"
+      android:layout_height="68dp"
+      android:layout_marginBottom="2dp"
+      android:background="#00FFFFFF"
+      android:onClick="slide"
+      android:visibility="visible"
+      app:layout_constraintBottom_toBottomOf="@+id/mainStart"
+      app:layout_constraintEnd_toEndOf="@+id/mainStart"
+      app:layout_constraintStart_toStartOf="@+id/mainStart"
+      app:layout_constraintTop_toTopOf="@+id/mainStart" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
