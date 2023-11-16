@@ -36,36 +36,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent, options.toBundle());
             }
         });
-    } public void slide(View view) {
+    }
+    public void slide(View view) {
         Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
     }
 }
-    /*
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        showMap = findViewById(R.id.showMap);
-
-        showMap.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
-                startActivity(intent);
-
-            }
-        });
-    }
-
-}
-
-<ImageButton
-        android:id="@+id/mapMenu"
-        android:layout_width="56dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="272dp"
-        android:src="@drawable/menu"
-        app:layout_constraintStart_toStartOf="@+id/mapBack"
-        app:layout_constraintTop_toTopOf="parent" />*/

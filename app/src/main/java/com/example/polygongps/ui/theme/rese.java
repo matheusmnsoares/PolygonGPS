@@ -1,12 +1,4 @@
-package com.example.polygongps;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.app.ActivityCompat;
-import androidx.core.app.ActivityOptionsCompat;
-import androidx.core.view.ViewCompat;
-import androidx.fragment.app.FragmentActivity;
+package com.example.polygongps.ui.theme;
 
 import android.Manifest;
 import android.content.Intent;
@@ -16,16 +8,19 @@ import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.FragmentActivity;
+
+import com.example.polygongps.MainActivity;
+import com.example.polygongps.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
@@ -36,14 +31,13 @@ import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
-import android.widget.ImageButton;
-import android.widget.Toast;
-
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class rese {
+}
+/*public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+
     Location currentLocation;
     FusedLocationProviderClient fusedClient;
     private static final int REQUEST_CODE = 101;
@@ -118,7 +112,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
             return;
         }
+
         getLocation();
+
         if (currentLocation != null) {
             LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
             coordinateList.add(latLng);
@@ -126,8 +122,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             String markerLabel = "Coordenada " + coordinateList.size();
             MarkerOptions markerOptions = new MarkerOptions().position(latLng).title(markerLabel);
             googleMap.addMarker(markerOptions);
-
-            googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
 
             Toast.makeText(this, "Coordenadas adicionada com sucesso!", Toast.LENGTH_SHORT).show();
         }
@@ -184,5 +178,82 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         }
     }
+
 }
 
+
+    <?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+<!-- Map Fragment -->
+
+<fragment
+        android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0" />
+
+<ImageView
+        android:id="@+id/mapBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/frame_4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+<ImageButton
+        android:id="@+id/mapBack"
+                android:layout_width="55dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="292dp"
+                android:backgroundTint="#00FFFFFF"
+                android:onClick="slide"
+                android:src="@drawable/back"
+                app:layout_constraintEnd_toEndOf="@+id/mapBar"
+                app:layout_constraintTop_toTopOf="@+id/map" />
+
+<ImageButton
+        android:id="@+id/mapMinus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#00FFFFFF"
+                android:src="@drawable/map_minus"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:onClick="removeLastLocation" />
+
+<ImageButton
+        android:id="@+id/mapPlus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#00FFFFFF"
+                android:src="@drawable/map_plus"
+                app:layout_constraintBottom_toTopOf="@+id/mapMinus"
+                app:layout_constraintStart_toStartOf="parent"
+                android:onClick="addLocationToList" />
+
+<ImageButton
+        android:id="@+id/mapCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#00FFFFFF"
+                android:src="@drawable/map_check"
+                app:layout_constraintBottom_toTopOf="@+id/mapPlus"
+                app:layout_constraintStart_toStartOf="parent"
+                android:onClick="plotPolygon"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+*/

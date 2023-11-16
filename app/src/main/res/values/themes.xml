@@ -2,7 +2,7 @@
 
     <style name="Theme.PolyMap" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowAnimationStyle">@style/ActivityAnim</item>
-    </style>    
+    </style>
 
     <style name="ActivityAnim" parent="@android:style/Animation.Activity">
         <item name="android:activityOpenEnterAnimation">@anim/slide_in</item>
