@@ -11,7 +11,10 @@ import androidx.fragment.app.FragmentActivity;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,8 +31,10 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
@@ -51,6 +56,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private List<LatLng> coordinateList = new ArrayList<>();
     private Polygon polygon;
     private GoogleMap googleMap;
+
+    private Marker userMarker;
+
+    private float currentBearing = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,11 +105,34 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(@NonNull GoogleMap googleMap) {
         Log.d("MapReady", "onMapReady called");
         this.googleMap = googleMap;
-        LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
-        MarkerOptions markerOptions = new MarkerOptions().position(latLng).title("Você está aqui!");
-        googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
-        googleMap.addMarker(markerOptions);
+
+        // Obtenha a latitude e longitude da localização atual
+        double latitude = currentLocation.getLatitude();
+        double longitude = currentLocation.getLongitude();
+
+        // Crie um objeto LatLng com a localização atual
+        LatLng latLng = new LatLng(latitude, longitude);
+
+        // Configurar opções do marcador
+        MarkerOptions markerOptions = new MarkerOptions()
+                .position(latLng)
+                .title("Sua localização");
+
+        // Adicionar marcador ao mapa e manter a referência para atualizações
+        userMarker = googleMap.addMarker(markerOptions);
+
+        // Mover a câmera para a localização atual com zoom
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+    }
+
+
+    // Método para atualizar a posição do marcador quando a localização do usuário muda
+    public void updateMarkerLocation(Location newLocation) {
+        if (googleMap != null && userMarker != null) {
+            LatLng newLatLng = new LatLng(newLocation.getLatitude(), newLocation.getLongitude());
+            userMarker.setPosition(newLatLng);
+            googleMap.animateCamera(CameraUpdateFactory.newLatLng(newLatLng));
+        }
     }
 
 
